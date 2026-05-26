@@ -138,7 +138,7 @@ Quatro ajustes finos sobre a V2:
 
 2. **Contato** — adicionado e-mail clicável (`contato@casadeamor.com.br`). Os 3 links (WhatsApp, Instagram, E-mail) agora seguem uma hierarquia label/valor: ícone redondo + linha "WHATSAPP" / valor "+55 18 99678-3104", muito mais premium e legível.
 
-3. **Local** — o card central do mapa, que mostrava "Endereço a confirmar", agora exibe **"Igreja Quadrangular Casa de Amor"** + **"Abrir localização no Google Maps"** e é um link clicável apontando para `https://share.google/28KgarkLwAHqlpPt4` (com indicador de "abrir externo" no canto superior direito). O bloco direito "Endereço" também recebe um link inline "Ver no Google Maps". Botão grande "ABRIR NO GOOGLE MAPS" mantido.
+3. **Local** — o card central do mapa, que mostrava "Endereço a confirmar", agora exibe **"Quadrangular Casa de Amor"** + **"Abrir localização no Google Maps"** e é um link clicável apontando para `https://share.google/28KgarkLwAHqlpPt4` (com indicador de "abrir externo" no canto superior direito). O bloco direito "Endereço" também recebe um link inline "Ver no Google Maps". Botão grande "ABRIR NO GOOGLE MAPS" mantido.
 
 4. **Compatibilidade Safari/iPhone** —
    - **`.reveal` agora aparece por padrão**; só fica invisível quando o JS confirma a inicialização (classe `.js-ready` no `<html>`, setada por um script bootstrap inline no `<head>`). Se o JS falhar (CSP, Reader Mode, rede ruim, JS desabilitado), o conteúdo continua visível — sem fantasmas.
@@ -200,7 +200,7 @@ Refino do bloco **Contato** no footer — limpeza completa para tirar a aparênc
 **Removido**
 - E-mail (`contato@casadeamor.com.br`)
 - Card pesado "Dúvidas sobre a conferência?" com ícone grande, fundo gradiente, botão e fio decorativo
-- Linha "Igreja Quadrangular Casa de Amor" duplicada no topo da coluna (já aparece no `footer-bottom`)
+- Linha "Quadrangular Casa de Amor" duplicada no topo da coluna (já aparece no `footer-bottom`)
 - Círculos ao redor dos ícones de contato (deixavam aparência de SAC)
 
 **Novo formato — minimalista, premium**
