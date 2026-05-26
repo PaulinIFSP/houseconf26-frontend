@@ -1,0 +1,1059 @@
+/* ═══════════════════════════════════════════════════════════════
+   INSCRIÇÃO — estilos exclusivos do fluxo
+   Carrega DEPOIS de styles.css. Herda todas as variáveis CSS
+   (--cream, --orange, --orange-warm, --amber, --black, etc.) e
+   reutiliza componentes existentes (.btn-cta, .btn-outline) sem
+   modificá-los. Tudo aqui é prefixado com .insc- para não vazar.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── OVERLAY MODAL (quando usado dentro do index.html) ──────
+   Quando o fluxo é embutido como modal, o site principal fica
+   abaixo e o overlay cobre toda a viewport. Diferente da página
+   standalone (inscricao.html), o overlay tem botão de fechar e
+   pode ser dispensado sem perder o contexto do site. */
+.insc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--black);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.insc-overlay.is-open {
+  display: block;
+  opacity: 1;
+}
+body.insc-overlay-open {
+  overflow: hidden;     /* trava o scroll do site enquanto o overlay está aberto */
+}
+/* botão de fechar (X), substitui o "Voltar ao site" quando em modo modal */
+.insc-overlay-close {
+  position: absolute;
+  top: 1.6rem; right: 5%;
+  z-index: 11;
+  background: transparent;
+  border: 1px solid rgba(232, 180, 122, 0.3);
+  border-radius: 50%;
+  width: 42px; height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream);
+  cursor: pointer;
+  transition: border-color .3s ease, background .3s ease, transform .3s ease, color .3s ease;
+}
+.insc-overlay-close:hover {
+  border-color: var(--orange);
+  background: rgba(232, 106, 42, 0.12);
+  color: var(--cream);
+  transform: rotate(90deg);
+}
+.insc-overlay-close svg {
+  width: 16px; height: 16px;
+}
+/* dentro do overlay, o "Voltar ao site" da topbar é redundante:
+   o botão X de fechar já cumpre essa função. */
+.insc-overlay .insc-topbar .insc-back {
+  display: none;
+}
+@media (max-width: 480px) {
+  .insc-overlay-close { width: 38px; height: 38px; top: 1.2rem; }
+}
+
+/* ── TOPBAR (header da página de inscrição) ─────────────────── */
+.insc-topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  padding: 1.6rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.insc-topbar-logo img {
+  height: 42px; width: auto; display: block;
+}
+@media (max-width: 480px) {
+  .insc-topbar { padding: 1.2rem 5%; }
+  .insc-topbar-logo img { height: 34px; }
+}
+
+/* ── PAGE LAYOUT ─────────────────────────────────────────────── */
+.insc-page {
+  background: var(--black);
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  padding: 8rem 5% 6rem;
+  overflow: hidden;
+}
+/* gradiente de fundo: ecoa o gradient-strip do site principal */
+.insc-page::before {
+  content: '';
+  position: absolute;
+  top: -40%; left: 50%;
+  width: 80vw; height: 80vh;
+  transform: translateX(-50%);
+  background-image: url('../assets/gradient/degrade.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(120px);
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+}
+.insc-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── BACK LINK (no topo da página) ──────────────────────────── */
+.insc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--amber);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  transition: color .3s ease, transform .3s ease, gap .3s ease;
+}
+.insc-back svg {
+  width: 14px; height: 14px;
+  transition: transform .3s ease;
+}
+.insc-back:hover {
+  color: var(--cream);
+  gap: 0.8rem;
+}
+.insc-back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── HEADERS (label + título grande) ────────────────────────── */
+.insc-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.insc-header-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 1.2rem;
+  display: block;
+  font-weight: 500;
+}
+.insc-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+}
+.insc-header-title em {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 300;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 60%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.insc-header-sub {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text);
+  max-width: 580px;
+  margin: 1rem auto 0;
+  line-height: 1.6;
+}
+
+/* ── STEP BAR ───────────────────────────────────────────────── */
+.insc-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 700px;
+  margin: 0 auto 3.5rem;
+  flex-wrap: nowrap;
+}
+.insc-step {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-body);
+  flex: 0 0 auto;
+}
+.insc-step-num {
+  width: 30px; height: 30px;
+  border: 1px solid rgba(232, 180, 122, 0.3);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: rgba(10, 6, 4, 0.4);
+  transition: all .35s ease;
+}
+.insc-step-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  transition: color .35s ease;
+}
+.insc-step-divider {
+  width: 36px; height: 1px;
+  background: rgba(232, 180, 122, 0.15);
+  margin: 0 1rem;
+  flex: 0 0 auto;
+}
+.insc-step.active .insc-step-num {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 100%);
+  color: var(--black);
+  border-color: transparent;
+  box-shadow: 0 0 0 4px rgba(232, 106, 42, 0.15);
+}
+.insc-step.active .insc-step-label {
+  color: var(--cream);
+}
+.insc-step.done .insc-step-num {
+  background: rgba(232, 106, 42, 0.18);
+  border-color: var(--orange);
+  color: var(--orange-warm);
+}
+.insc-step.done .insc-step-label {
+  color: var(--text-light);
+}
+
+/* ── STAGE (cada etapa do fluxo) ────────────────────────────── */
+.insc-stage { display: none; }
+.insc-stage.active { display: block; animation: insc-fade .5s ease both; }
+@keyframes insc-fade {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ETAPA 1 — PLANOS (LOTES E COMBOS)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── LOTES ────────────────────────────────────────────────────── */
+.insc-lotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+.insc-lote {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(232, 106, 42, 0.05) 0%, transparent 50%),
+    rgba(20, 9, 10, 0.7);
+  border: 1px solid rgba(232, 180, 122, 0.18);
+  padding: 2.25rem 2rem;
+  transition: border-color .4s ease, background .4s ease;
+}
+.insc-lote.active {
+  border-color: rgba(232, 106, 42, 0.55);
+  background:
+    linear-gradient(135deg, rgba(232, 106, 42, 0.12) 0%, rgba(232, 106, 42, 0.02) 50%),
+    rgba(20, 9, 10, 0.85);
+  box-shadow: 0 24px 60px -28px rgba(232, 106, 42, 0.4);
+}
+.insc-lote-tag {
+  position: absolute;
+  top: -10px; left: 1.75rem;
+  background: var(--black);
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid rgba(232, 180, 122, 0.2);
+}
+.insc-lote.active .insc-lote-tag {
+  color: var(--orange);
+  border-color: var(--orange);
+  background: linear-gradient(180deg, var(--black) 0%, rgba(232, 106, 42, 0.1) 100%);
+}
+.insc-lote-title {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  margin-top: 0.4rem;
+}
+.insc-lote-price {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.insc-lote-price small {
+  font-size: 0.95rem;
+  color: var(--amber);
+  font-weight: 400;
+  margin-right: 0.15rem;
+  letter-spacing: 0;
+}
+.insc-lote.active .insc-lote-price {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.insc-lote-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.insc-lote-disabled {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* ── COMBOS / TIPOS DE INSCRIÇÃO ─────────────────────────────── */
+.insc-section-title {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+.insc-tipos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  margin-bottom: 3rem;
+}
+@media (max-width: 1100px) {
+  .insc-tipos { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+.insc-tipo {
+  position: relative;
+  padding: 2rem 1.5rem 1.75rem;
+  background: rgba(20, 9, 10, 0.65);
+  border: 1px solid rgba(232, 180, 122, 0.15);
+  cursor: pointer;
+  transition: all .35s cubic-bezier(.2,.8,.2,1);
+  text-align: center;
+  user-select: none;
+}
+.insc-tipo input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.insc-tipo:hover {
+  border-color: rgba(232, 180, 122, 0.35);
+  background: rgba(20, 9, 10, 0.85);
+  transform: translateY(-2px);
+}
+.insc-tipo input:checked + .insc-tipo-inner,
+.insc-tipo.is-selected {
+  /* aplicado via classe */
+}
+.insc-tipo.is-selected {
+  border-color: var(--orange);
+  background:
+    linear-gradient(135deg, rgba(232, 106, 42, 0.12) 0%, rgba(232, 106, 42, 0.02) 60%),
+    rgba(20, 9, 10, 0.85);
+  box-shadow: 0 16px 38px -18px rgba(232, 106, 42, 0.45);
+}
+.insc-tipo.is-selected::after {
+  content: '✓';
+  position: absolute;
+  top: 0.9rem; right: 1rem;
+  width: 24px; height: 24px;
+  background: linear-gradient(135deg, var(--cream), var(--orange-warm));
+  color: var(--black);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+.insc-tipo-label {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.insc-tipo-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--cream);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+.insc-tipo-people {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.1rem;
+}
+.insc-tipo-value {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  display: block;
+}
+.insc-tipo-value small {
+  font-size: 0.85rem;
+  color: var(--amber);
+  -webkit-text-fill-color: var(--amber);
+  font-weight: 400;
+  margin-right: 0.15rem;
+}
+.insc-tipo-saving {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--amber);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* card disabled (ex.: 2º lote ainda não ativo) */
+.insc-tipo.is-disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+.insc-tipo.is-disabled:hover {
+  transform: none;
+  border-color: rgba(232, 180, 122, 0.15);
+  background: rgba(20, 9, 10, 0.65);
+}
+
+/* card de "criança gratuito" — estilo levemente distinto, mais leve */
+.insc-tipo-free {
+  background:
+    linear-gradient(135deg, rgba(244, 217, 181, 0.05) 0%, transparent 60%),
+    rgba(20, 9, 10, 0.55);
+  border-style: dashed;
+  border-color: rgba(232, 180, 122, 0.25);
+}
+.insc-tipo-value-free {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--cream);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: var(--cream);
+  display: block;
+  line-height: 1;
+}
+
+/* ── BENEFITS LIST ──────────────────────────────────────────── */
+.insc-benefits {
+  background: rgba(20, 9, 10, 0.55);
+  border: 1px solid rgba(232, 180, 122, 0.12);
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: center;
+}
+.insc-benefit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+.insc-benefit svg {
+  width: 16px; height: 16px;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ETAPA 2 — FORMULÁRIO
+═══════════════════════════════════════════════════════════════ */
+
+.insc-form {
+  background: rgba(20, 9, 10, 0.7);
+  border: 1px solid rgba(232, 180, 122, 0.15);
+  padding: 2.75rem 2.5rem;
+}
+.insc-form-section {
+  margin-bottom: 2.5rem;
+}
+.insc-form-section:last-child {
+  margin-bottom: 0;
+}
+.insc-form-section-title {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(232, 180, 122, 0.12);
+}
+.insc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 1.5rem;
+}
+.insc-field { display: flex; flex-direction: column; gap: 0.45rem; }
+.insc-field.insc-field-full { grid-column: 1 / -1; }
+.insc-field label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+}
+.insc-field input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(232, 180, 122, 0.25);
+  padding: 0.65rem 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--cream);
+  letter-spacing: 0.005em;
+  transition: border-color .3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+.insc-field input:focus {
+  outline: none;
+  border-bottom-color: var(--orange);
+}
+.insc-field input::placeholder { color: rgba(184, 161, 136, 0.4); }
+.insc-field input.is-error { border-bottom-color: #e84a4a; }
+
+/* ── input type=date — ajustes para tema escuro ───────────── */
+.insc-field input[type="date"] {
+  color-scheme: dark;
+  font-family: var(--font-body);
+  /* o picker nativo do iOS/Android é responsivo; aqui só normalizamos
+     a aparência do input fechado para combinar com os outros campos */
+  text-transform: lowercase;
+  color: var(--cream);
+}
+.insc-field input[type="date"]:not(.has-value):invalid {
+  color: rgba(184, 161, 136, 0.4);
+}
+.insc-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.72) sepia(0.4) saturate(2) hue-rotate(340deg);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+.insc-field input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+.insc-field-error {
+  font-size: 0.72rem;
+  color: #e84a4a;
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+  display: none;
+}
+.insc-field.has-error .insc-field-error { display: block; }
+
+/* ── PARTICIPANTES (cards adicionais para combos) ────────────── */
+.insc-participants {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.insc-participant {
+  background: rgba(10, 6, 4, 0.55);
+  border: 1px solid rgba(232, 180, 122, 0.12);
+  padding: 1.6rem 1.75rem;
+  position: relative;
+}
+.insc-participant-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.insc-participant-num {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+}
+.insc-participant-name {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.insc-child-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(232, 106, 42, 0.15);
+  border: 1px solid rgba(232, 106, 42, 0.4);
+  color: var(--orange-warm);
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 0.7rem;
+}
+.insc-child-badge svg {
+  width: 12px; height: 12px;
+  flex-shrink: 0;
+}
+
+/* ── CONSENTIMENTO (LGPD + Termos) ───────────────────────────
+   Dois checkboxes obrigatórios. Visual premium: caixa quadrada
+   fina em cobre/amber, check em gradient cream→orange quando
+   marcado. Erro inline aparece em vermelho se o usuário tentar
+   avançar sem marcar ambos. */
+.insc-consent {
+  margin-top: 2.25rem;
+  padding-top: 1.85rem;
+  border-top: 1px solid rgba(232, 180, 122, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+.insc-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+.insc-check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0; height: 0;
+}
+.insc-check-box {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border: 1.5px solid rgba(232, 180, 122, 0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  background: transparent;
+  transition: border-color .25s ease, background .25s ease, color .25s ease;
+  margin-top: 0.12rem;
+}
+.insc-check-box svg {
+  width: 14px; height: 14px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity .2s ease, transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.insc-check:hover .insc-check-box {
+  border-color: var(--orange-warm);
+}
+.insc-check input:checked + .insc-check-box {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 60%, var(--orange) 100%);
+  border-color: transparent;
+  color: var(--black);
+}
+.insc-check input:checked + .insc-check-box svg {
+  opacity: 1;
+  transform: scale(1);
+}
+.insc-check input:focus-visible + .insc-check-box {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+.insc-check-text a {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 144, 94, 0.35);
+  padding-bottom: 1px;
+  transition: color .25s ease, border-color .25s ease;
+}
+.insc-check-text a:hover {
+  color: var(--cream);
+  border-bottom-color: var(--cream);
+}
+
+/* estado de erro: o usuário tentou avançar sem marcar */
+.insc-consent.has-error .insc-check-box {
+  border-color: #e84a4a;
+  animation: insc-shake .35s cubic-bezier(.2,.8,.2,1);
+}
+.insc-consent-error {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #e84a4a;
+  margin-top: 0.4rem;
+  letter-spacing: 0.01em;
+}
+.insc-consent.has-error .insc-consent-error {
+  display: block;
+}
+@keyframes insc-shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  75%      { transform: translateX(4px); }
+}
+
+/* ── FORM NAV (botões anterior/próximo) ─────────────────────── */
+.insc-form-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+.insc-form-nav .insc-back-step {
+  background: transparent;
+  border: 0;
+  color: var(--amber);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.7rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color .3s ease, gap .3s ease;
+}
+.insc-form-nav .insc-back-step:hover {
+  color: var(--cream);
+  gap: 0.8rem;
+}
+.insc-form-nav .insc-back-step svg { width: 14px; height: 14px; }
+
+/* ── BTN PRIMÁRIO (gradient signature) ───────────────────────── */
+.insc-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 2.4rem;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 60%, var(--orange) 100%);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, gap .35s ease;
+  white-space: nowrap;
+  box-shadow: 0 14px 36px -14px rgba(232, 106, 42, 0.5);
+}
+.insc-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 50px -14px rgba(232, 106, 42, 0.65);
+  gap: 0.9rem;
+}
+.insc-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.insc-btn-primary svg { width: 14px; height: 14px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ETAPA 3 — RESUMO
+═══════════════════════════════════════════════════════════════ */
+
+.insc-summary {
+  background: rgba(20, 9, 10, 0.75);
+  border: 1px solid rgba(232, 180, 122, 0.18);
+  padding: 2.75rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.insc-summary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(232, 106, 42, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.insc-summary > * { position: relative; z-index: 1; }
+
+.insc-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(232, 180, 122, 0.08);
+  gap: 1rem;
+}
+.insc-summary-row:first-of-type { padding-top: 0; }
+.insc-summary-row:last-of-type { border-bottom: 0; }
+.insc-summary-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.insc-summary-value {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--cream);
+  text-align: right;
+  font-weight: 500;
+}
+
+.insc-summary-total {
+  margin-top: 2rem;
+  padding: 1.75rem 0 0;
+  border-top: 1px solid rgba(232, 180, 122, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.insc-summary-total-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+}
+.insc-summary-total-value {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+.insc-summary-total-value small {
+  font-size: 1.1rem;
+  -webkit-text-fill-color: var(--amber);
+  color: var(--amber);
+  font-weight: 400;
+  margin-right: 0.15rem;
+}
+
+.insc-payment-info {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px dashed rgba(232, 180, 122, 0.15);
+}
+.insc-payment-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding: 1rem 0.5rem;
+}
+.insc-payment-method svg {
+  width: 22px; height: 22px;
+  color: var(--orange);
+}
+.insc-payment-method-name {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  font-weight: 500;
+}
+.insc-payment-method-note {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.insc-summary-cta {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+.insc-summary-cta-note {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ETAPA 4 — CONFIRMAÇÃO
+═══════════════════════════════════════════════════════════════ */
+
+.insc-confirm {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+.insc-confirm-check {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 60%, var(--orange) 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 18px 50px -10px rgba(232, 106, 42, 0.55);
+  animation: insc-check-pop .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.insc-confirm-check svg {
+  width: 40px; height: 40px;
+  color: var(--black);
+  stroke-width: 3;
+}
+@keyframes insc-check-pop {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.insc-confirm-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-bottom: 1.25rem;
+  line-height: 1.1;
+}
+.insc-confirm-title em {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 300;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--orange-warm) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.insc-confirm-msg {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 580px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+.insc-confirm-code {
+  display: inline-block;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  padding: 0.6rem 1.4rem;
+  border: 1px dashed rgba(232, 180, 122, 0.3);
+  color: var(--amber);
+  margin-bottom: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVO
+═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 880px) {
+  .insc-page { padding: 6.5rem 5% 5rem; }
+  .insc-lotes { grid-template-columns: 1fr; gap: 1.2rem; }
+  .insc-tipos { grid-template-columns: 1fr; gap: 1rem; }
+  .insc-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .insc-form, .insc-summary { padding: 2rem 1.6rem; }
+  .insc-steps { gap: 0; }
+  .insc-step-divider { width: 18px; margin: 0 0.4rem; }
+  .insc-step-label { display: none; }
+  .insc-step-num { width: 28px; height: 28px; font-size: 0.72rem; }
+  .insc-payment-info { grid-template-columns: 1fr; gap: 0.4rem; }
+  .insc-payment-method { flex-direction: row; padding: 0.6rem 0; gap: 0.8rem; }
+  .insc-form-nav { flex-direction: column-reverse; align-items: stretch; }
+  .insc-form-nav .insc-btn-primary { justify-content: center; }
+  .insc-summary-total-value { font-size: 2rem; }
+  .insc-summary-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .insc-summary-value { text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .insc-page { padding: 5.5rem 6% 4rem; }
+  .insc-header-title { font-size: 2.1rem; }
+  .insc-lote { padding: 1.75rem 1.5rem; }
+  .insc-lote-price { font-size: 2.2rem; }
+  .insc-tipo { padding: 1.6rem 1.2rem 1.5rem; }
+  .insc-form, .insc-summary { padding: 1.75rem 1.3rem; }
+  .insc-confirm-check { width: 72px; height: 72px; }
+  .insc-confirm-check svg { width: 32px; height: 32px; }
+}
