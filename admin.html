@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin | House Conf 26</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-header">
+      <div>
+        <p>House Conf 26</p>
+        <h1>Painel administrativo</h1>
+      </div>
+      <button id="refresh">Atualizar</button>
+    </header>
+
+    <section id="login" class="login-card">
+      <h2>Acesso restrito</h2>
+      <p>Digite o token administrativo configurado no Render.</p>
+      <input id="token" type="password" placeholder="ADMIN_TOKEN">
+      <button id="enter">Entrar</button>
+      <small>Atalho: admin.html?token=SEU_TOKEN</small>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+      <div class="cards">
+        <article><span>Total inscrições</span><strong id="k-total">0</strong></article>
+        <article><span>Aprovadas</span><strong id="k-aprovadas">0</strong></article>
+        <article><span>Pendentes</span><strong id="k-pendentes">0</strong></article>
+        <article><span>Participantes</span><strong id="k-participantes">0</strong></article>
+        <article><span>Receita bruta</span><strong id="k-receita">R$ 0,00</strong></article>
+      </div>
+
+      <div class="charts">
+        <article><h2>Inscrições por tipo</h2><canvas id="chartTipo"></canvas></article>
+        <article><h2>Status dos pagamentos</h2><canvas id="chartStatus"></canvas></article>
+      </div>
+
+      <section class="table-card">
+        <div class="table-top">
+          <h2>Inscrições recentes</h2>
+          <input id="search" type="search" placeholder="Buscar por nome, código ou tipo">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th><th>Status</th><th>Responsável</th><th>Tipo</th><th>Qtd</th><th>Pagamento</th><th>Valor</th><th>Data</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="js/admin.js"></script>
+</body>
+</html>

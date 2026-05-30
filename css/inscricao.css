@@ -1057,3 +1057,143 @@ body.insc-overlay-open {
   .insc-confirm-check { width: 72px; height: 72px; }
   .insc-confirm-check svg { width: 32px; height: 32px; }
 }
+
+/* Ajustes 2026 — combos, pagamento e mobile */
+.insc-tipo.is-disabled {
+  cursor: default;
+  opacity: .78;
+  pointer-events: none;
+}
+.insc-tipo-free::after { display: none !important; }
+.insc-extra-participants {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(232,180,122,.18);
+  padding-top: 2rem;
+}
+.insc-extra-header span,
+.payment-title {
+  display: block;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .72rem;
+  color: var(--amber);
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+.insc-extra-header p,
+.payment-subtitle {
+  margin: 0 0 1.3rem;
+  color: var(--text-light);
+  opacity: .82;
+  line-height: 1.55;
+  font-size: .92rem;
+}
+.insc-participant-card {
+  border: 1px solid rgba(232,180,122,.16);
+  background: rgba(255,255,255,.025);
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+.insc-participant-card h4 {
+  margin: 0 0 1rem;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: .76rem;
+  color: var(--cream);
+}
+.insc-summary-participants {
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(232,180,122,.12);
+  border-bottom: 1px solid rgba(232,180,122,.12);
+  margin: .6rem 0 1.2rem;
+}
+.sum-participants-list {
+  display: grid;
+  gap: .75rem;
+  margin-top: .9rem;
+}
+.sum-person {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: .1rem .8rem;
+  align-items: center;
+  padding: .8rem .9rem;
+  border: 1px solid rgba(232,180,122,.14);
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+}
+.sum-person span {
+  grid-row: span 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(232,106,42,.12);
+  color: var(--amber);
+  font-size: .72rem;
+  letter-spacing: .08em;
+}
+.sum-person strong { color: var(--cream); font-size: .95rem; }
+.sum-person small { color: var(--text-light); opacity: .72; }
+.payment-section {
+  margin-top: 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px dashed rgba(232,180,122,.25);
+}
+.payment-section.is-hidden { display: none; }
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+}
+.pay-option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: .8rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid rgba(232,180,122,.18);
+  border-radius: 16px;
+  background: rgba(255,255,255,.025);
+  cursor: pointer;
+  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.pay-option:hover, .pay-option.is-selected {
+  border-color: rgba(255,169,104,.65);
+  background: rgba(232,106,42,.08);
+  transform: translateY(-1px);
+}
+.pay-option input { position: absolute; opacity: 0; pointer-events: none; }
+.pay-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(232,180,122,.55);
+  box-shadow: inset 0 0 0 4px rgba(0,0,0,.35);
+}
+.pay-option.is-selected .pay-dot { background: var(--orange); border-color: var(--orange-warm); }
+.pay-content { display: grid; gap: .18rem; min-width: 0; }
+.pay-title { color: var(--cream); font-weight: 700; }
+.pay-note { color: var(--text-light); opacity: .7; font-size: .78rem; line-height: 1.35; }
+.pay-value { color: var(--amber); font-size: .85rem; text-align: right; white-space: nowrap; }
+.pay-value strong { font-weight: 700; }
+@media (max-width: 700px) {
+  .insc-topbar { padding: .8rem 1rem; }
+  .insc-topbar-logo img { max-width: 112px; }
+  .insc-header-title { letter-spacing: -0.04em; }
+  .insc-tipos, .payment-options { grid-template-columns: 1fr; }
+  .pay-option { grid-template-columns: auto 1fr; }
+  .pay-value { grid-column: 2; text-align: left; }
+  .sum-person { grid-template-columns: 36px 1fr; padding: .75rem; }
+  .insc-participant-card { padding: 1rem; }
+}
+@media (max-width: 430px) {
+  .insc-page { padding-left: 4.5%; padding-right: 4.5%; }
+  .insc-form, .insc-summary { padding: 1.35rem 1rem; }
+  .insc-field input { font-size: 16px; }
+  .insc-btn-primary { width: 100%; justify-content: center; }
+}

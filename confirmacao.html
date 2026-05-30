@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscrição confirmada - House Conf 26</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0604" />
+  <title>Inscrição Confirmada | House Conf 26</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/confirmacao.css">
 </head>
 <body>
-  <main style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;background:#100602;color:#f6dfc4;">
-    <section>
+  <main class="confirm-page">
+    <section class="confirm-card">
+      <div class="confirm-glow"></div>
+      <div class="confirm-check">✓</div>
+      <p class="confirm-eyebrow">Pagamento aprovado</p>
       <h1>Inscrição confirmada</h1>
-      <p>Recebemos a confirmação do pagamento da sua inscrição na House Conf 26.</p>
-      <p>Em breve você receberá mais informações pelo WhatsApp ou e-mail cadastrado.</p>
-      <a href="/" style="color:#f6dfc4;">Voltar ao início</a>
+      <p class="confirm-text">Seu lugar na <strong>House Conf 26</strong> foi confirmado. Guarde o código abaixo para conferência e acompanhamento da sua inscrição.</p>
+
+      <div class="confirm-code-box">
+        <span>Código da inscrição</span>
+        <strong id="codigo-inscricao">HC26</strong>
+      </div>
+
+      <div class="confirm-next">
+        <h2>Próximos passos</h2>
+        <p>Em breve a organização poderá enviar orientações pelo WhatsApp ou e-mail cadastrado. Acompanhe também os canais oficiais.</p>
+      </div>
+
+      <div class="confirm-actions">
+        <a class="btn-primary" href="https://wa.me/5519999999999" target="_blank" rel="noopener noreferrer">WhatsApp da organização</a>
+        <a class="btn-secondary" href="https://www.instagram.com/quadrangularcasadeamor" target="_blank" rel="noopener noreferrer">Instagram oficial</a>
+        <a class="btn-ghost" href="/">Voltar ao site</a>
+      </div>
+
+      <footer>Quadrangular Casa de Amor — House Conf 26</footer>
     </section>
   </main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const codigo = params.get('codigo') || params.get('external_reference') || params.get('preference_id') || 'HC26';
+    document.getElementById('codigo-inscricao').textContent = codigo;
+  </script>
 </body>
 </html>
