@@ -44,22 +44,16 @@
     const ids = new Set();
 
     $$('[id]').forEach(el => {
-      if (ids.has(el.id)) {
-        el.remove();
-      } else {
-        ids.add(el.id);
-      }
+      if (ids.has(el.id)) el.remove();
+      else ids.add(el.id);
     });
 
     const seenStages = new Set();
 
     $$('.insc-stage').forEach(stage => {
       const key = stage.dataset.stage || stage.className;
-      if (seenStages.has(key)) {
-        stage.remove();
-      } else {
-        seenStages.add(key);
-      }
+      if (seenStages.has(key)) stage.remove();
+      else seenStages.add(key);
     });
 
     const steps = $$('.insc-steps');
@@ -484,6 +478,9 @@
       `).join('');
     }
 
+    const oldPix = $('#pix-payment-box');
+    if (oldPix) oldPix.remove();
+
     renderPaymentOptions();
     updateTotalForPayment();
   }
@@ -494,6 +491,62 @@
 
     if (back) back.onclick = () => goToStep(2);
     if (pay) pay.onclick = handlePayment;
+  }
+
+  function showPixPayment(json) {
+    const old = $('#pix-payment-box');
+    if (old) old.remove();
+
+    const box = document.createElement('div');
+    box.id = 'pix-payment-box';
+    box.style.cssText = `
+      margin: 2rem auto 0;
+      padding: 1.5rem;
+      max-width: 620px;
+      border: 1px solid rgba(232, 106, 42, 0.45);
+      border-radius: 22px;
+      background: rgba(40, 12, 6, 0.72);
+      color: var(--cream, #fff4e6);
+      text-align: center;
+    `;
+
+    const img = json.qr_code_base64
+      ? `<img src="data:image/png;base64,${json.qr_code_base64}" alt="QR Code Pix" style="width:220px;max-width:100%;background:#fff;padding:12px;border-radius:16px;margin:1rem auto;display:block">`
+      : '';
+
+    box.innerHTML = `
+      <h3 style="font-size:1.6rem;margin:0 0 .5rem">Pagamento via Pix</h3>
+      <p style="opacity:.85;margin:0 0 1rem">Escaneie o QR Code ou copie o código Pix abaixo.</p>
+      ${img}
+      <textarea readonly id="pix-copy-code" style="width:100%;min-height:110px;border-radius:14px;padding:1rem;background:#120806;color:#fff;border:1px solid rgba(255,255,255,.18);font-size:.85rem">${json.qr_code || ''}</textarea>
+      <button type="button" id="copy-pix-btn" style="margin-top:1rem;width:100%;padding:1rem;border:0;border-radius:999px;background:linear-gradient(135deg,#ffd0a1,#ff7a2f);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#160704">Copiar código Pix</button>
+      ${json.ticket_url ? `<a href="${json.ticket_url}" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:1rem;color:#ffd0a1;text-decoration:underline">Abrir pagamento Pix</a>` : ''}
+      <p style="font-size:.9rem;opacity:.75;margin-top:1rem">Código da inscrição: <strong>${json.codigo_inscricao || json.reference || state.reference}</strong></p>
+    `;
+
+    const cta = $('.insc-summary-cta') || $('#insc-pay')?.parentElement || $('.insc-summary');
+    cta.insertAdjacentElement('afterend', box);
+
+    const btn = $('#copy-pix-btn');
+    if (btn) {
+      btn.onclick = async function () {
+        const code = $('#pix-copy-code')?.value || json.qr_code || '';
+
+        try {
+          await navigator.clipboard.writeText(code);
+          btn.textContent = 'Código Pix copiado';
+        } catch {
+          const area = $('#pix-copy-code');
+          if (area) {
+            area.focus();
+            area.select();
+          }
+          alert('Selecione e copie o código Pix manualmente.');
+        }
+      };
+    }
+
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   async function handlePayment() {
@@ -534,11 +587,21 @@
 
       const json = await res.json();
 
+      if (json.reference) state.reference = json.reference;
+
+      if (json.payment_type === 'pix' && (json.qr_code || json.qr_code_base64 || json.ticket_url)) {
+        showPixPayment(json);
+        btn.disabled = false;
+        if (label) label.textContent = 'Gerar Pix novamente';
+        return;
+      }
+
       if (json.init_point) {
         window.location.href = json.init_point;
-      } else {
-        throw new Error(json.message || 'Sem link de pagamento');
+        return;
       }
+
+      throw new Error(json.message || 'Sem link de pagamento');
     } catch (err) {
       console.error(err);
       alert('Não foi possível iniciar o pagamento. Tente novamente.');
