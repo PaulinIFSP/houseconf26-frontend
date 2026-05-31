@@ -176,9 +176,8 @@
       goToStep(2);
     });
   }
-}
   }
-
+  
   function createField({ id, label, type = 'text', required = true, placeholder = '', key, inputmode = '', autocomplete = 'off', full = false, participantIndex = 1 }) {
     const wrap = document.createElement('div');
     wrap.className = `insc-field ${full ? 'insc-field-full' : ''}`;
