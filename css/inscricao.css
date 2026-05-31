@@ -1197,3 +1197,54 @@ body.insc-overlay-open {
   .insc-field input { font-size: 16px; }
   .insc-btn-primary { width: 100%; justify-content: center; }
 }
+
+
+/* Ajustes finais — inscrição */
+.insc-back-step {
+  background: rgba(255, 208, 161, 0.06);
+  border: 1px solid rgba(255, 208, 161, 0.24);
+  color: var(--amber);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: border-color .2s ease, color .2s ease, background .2s ease, transform .2s ease;
+}
+.insc-back-step:hover {
+  background: rgba(255, 208, 161, 0.12);
+  border-color: rgba(255, 122, 47, 0.65);
+  color: var(--cream);
+  transform: translateY(-1px);
+}
+.insc-back-step svg { width: 14px; height: 14px; }
+
+.insc-tipo { position: relative; }
+.tipo-check {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ffd0a1, #ff7a2f);
+  color: #160704;
+  font-weight: 900;
+  box-shadow: 0 0 24px rgba(255, 122, 47, 0.35);
+}
+
+#pix-payment-box {
+  box-shadow: 0 22px 70px rgba(0,0,0,.32);
+}
+#pix-payment-box textarea {
+  resize: vertical;
+}

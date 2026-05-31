@@ -1862,3 +1862,44 @@ footer::before {
   content: "ℹ ";
   color: #ff9b55;
 }
+
+
+/* Ajustes finais — House Conf 26 */
+.tema-ref {
+  margin: -0.35rem 0 1.35rem;
+  color: var(--amber);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .countdown {
+    width: min(100%, 560px);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.45rem;
+    padding: 1.8rem 0.45rem;
+    overflow: hidden;
+  }
+  .countdown .cd-sep { display: none; }
+  .cd-unit { min-width: 0; }
+  .cd-num {
+    font-size: clamp(2rem, 11vw, 3rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+  .cd-label {
+    font-size: clamp(0.43rem, 1.8vw, 0.55rem);
+    letter-spacing: 0.18em;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 380px) {
+  .countdown { gap: 0.3rem; padding-inline: 0.25rem; }
+  .cd-num { font-size: clamp(1.75rem, 10vw, 2.45rem); }
+  .cd-label { font-size: 0.4rem; letter-spacing: 0.12em; }
+}
