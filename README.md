@@ -307,7 +307,7 @@ Form premium (linhas minimalistas, sem caixas pesadas) com 7 campos:
 Validação básica: nome com sobrenome, CPF com 11 dígitos, e-mail formato válido, WhatsApp com ao menos 10 dígitos. Erros inline em cada campo, scroll automático até o primeiro erro.
 
 **Etapa 3 — Resumo**
-Lista todas as informações cadastradas, valor total em destaque (gradient cream→orange), informação de parcelamento ("ou 3x de R$ XX,XX no cartão"), três métodos de pagamento (Pix · À vista, Cartão · Crédito e débito, Parcelamento · Em até 3x), botão "Ir para pagamento", nota "Você será redirecionado para o ambiente seguro do Mercado Pago".
+Lista todas as informações cadastradas, valor total em destaque (gradient cream→orange), informação de parcelamento ("ou 3x de R$ XX,XX no cartão"), três métodos de pagamento (Pix · À vista, Cartão · Crédito, Parcelamento · Em até 3x), botão "Ir para pagamento", nota "Você será redirecionado para o ambiente seguro do Mercado Pago".
 
 **Comportamento especial para criança gratuita:**
 - Valor total: R$ 0,00 com "Entrada gratuita — não há cobrança"
