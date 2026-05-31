@@ -131,37 +131,52 @@
   }
 
   function bindStep1() {
-    applyPlanCardState();
+  applyPlanCardState();
 
-    $$('.insc-tipo').forEach(card => {
-      card.addEventListener('click', (event) => {
-        const tipo = TIPOS[card.dataset.tipo];
+  $$('.insc-tipo').forEach(card => {
+    const tipoKey = card.dataset.tipo;
+    const tipo = TIPOS[tipoKey];
 
-        if (!tipo || tipo.disabled || tipo.infoOnly || card.classList.contains('is-disabled')) {
-          event.preventDefault();
-          return;
-        }
+    if (!tipo || tipo.disabled || tipo.infoOnly) return;
 
-        $$('.insc-tipo').forEach(c => c.classList.remove('is-selected'));
-        card.classList.add('is-selected');
+    card.style.cursor = 'pointer';
 
-        const input = card.querySelector('input[type="radio"]');
-        if (input) input.checked = true;
+    card.addEventListener('click', () => {
+      $$('.insc-tipo').forEach(c => c.classList.remove('is-selected'));
+      card.classList.add('is-selected');
 
-        state.tipo = card.dataset.tipo;
-        $('#insc-continue-1').disabled = false;
-      });
+      const input = card.querySelector('input[type="radio"]');
+      if (input) input.checked = true;
+
+      state.tipo = tipoKey;
+
+      const btn = $('#insc-continue-1');
+      if (btn) {
+        btn.disabled = false;
+        btn.removeAttribute('disabled');
+      }
     });
+  });
 
-    $('#insc-continue-1').addEventListener('click', () => {
-      if (!state.tipo) return;
+  const btn = $('#insc-continue-1');
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      if (!state.tipo) {
+        alert('Selecione um tipo de inscrição para continuar.');
+        return;
+      }
 
       const tipo = TIPOS[state.tipo];
-      $('#insc-form-context').textContent = tipo.label;
+
+      const contexto = $('#insc-form-context');
+      if (contexto) contexto.textContent = tipo.label;
 
       renderParticipantsFields();
       goToStep(2);
     });
+  }
+}
   }
 
   function createField({ id, label, type = 'text', required = true, placeholder = '', key, inputmode = '', autocomplete = 'off', full = false, participantIndex = 1 }) {
