@@ -15,7 +15,6 @@
 
   const PAYMENT_METHODS = {
     pix: { label: 'Pix', note: 'Valor normal', factor: 1, installments: 1 },
-    debito: { label: 'Débito', note: 'Valor normal', factor: 1, installments: 1 },
     credito1x: { label: 'Crédito 1x', note: 'Taxa embutida', factor: 1 / (1 - 0.0498), installments: 1 },
     credito2x: { label: 'Crédito 2x', note: 'Taxa embutida', factor: 1 / (1 - 0.0498), installments: 2 },
     credito3x: { label: 'Crédito 3x', note: 'Taxa embutida', factor: 1 / (1 - 0.0498), installments: 3 }
@@ -516,12 +515,12 @@
 
     box.innerHTML = `
       <h3 style="font-size:1.6rem;margin:0 0 .5rem">Pagamento via Pix</h3>
-      <p style="opacity:.85;margin:0 0 1rem">Escaneie o QR Code ou copie o código Pix abaixo.</p>
+      <p style="opacity:.85;margin:0 0 1rem">Escaneie o QR Code ou copie o código Pix abaixo para finalizar sua inscrição. Após o pagamento, a confirmação pode levar alguns instantes.</p>
       ${img}
       <textarea readonly id="pix-copy-code" style="width:100%;min-height:110px;border-radius:14px;padding:1rem;background:#120806;color:#fff;border:1px solid rgba(255,255,255,.18);font-size:.85rem">${json.qr_code || ''}</textarea>
       <button type="button" id="copy-pix-btn" style="margin-top:1rem;width:100%;padding:1rem;border:0;border-radius:999px;background:linear-gradient(135deg,#ffd0a1,#ff7a2f);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#160704">Copiar código Pix</button>
       ${json.ticket_url ? `<a href="${json.ticket_url}" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:1rem;color:#ffd0a1;text-decoration:underline">Abrir pagamento Pix</a>` : ''}
-      <p style="font-size:.9rem;opacity:.75;margin-top:1rem">Código da inscrição: <strong>${json.codigo_inscricao || json.reference || state.reference}</strong></p>
+      <p style="font-size:.9rem;opacity:.75;margin-top:1rem">Depois de pagar, aguarde a atualização automática do status. Código da inscrição: <strong>${json.codigo_inscricao || json.reference || state.reference}</strong></p>
     `;
 
     const cta = $('.insc-summary-cta') || $('#insc-pay')?.parentElement || $('.insc-summary');
