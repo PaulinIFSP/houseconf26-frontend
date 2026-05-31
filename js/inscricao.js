@@ -130,52 +130,68 @@
     });
   }
 
-  function bindStep1() {
-    applyPlanCardState();
+ function bindStep1() {
+  applyPlanCardState();
 
-    $$('.insc-tipo').forEach(card => {
-      const tipoKey = card.dataset.tipo;
-      const tipo = TIPOS[tipoKey];
+  const btn = $('#insc-continue-1');
 
-      if (!tipo || tipo.disabled || tipo.infoOnly) return;
+  function selectTipo(card) {
+    const tipoKey = card.dataset.tipo;
+    const tipo = TIPOS[tipoKey];
 
-      card.style.cursor = 'pointer';
+    if (!tipo || tipo.disabled || tipo.infoOnly) return;
 
-      card.addEventListener('click', () => {
-        $$('.insc-tipo').forEach(c => c.classList.remove('is-selected'));
-        card.classList.add('is-selected');
-
-        const input = card.querySelector('input[type="radio"]');
-        if (input) input.checked = true;
-
-        state.tipo = tipoKey;
-
-        const btn = $('#insc-continue-1');
-        if (btn) {
-          btn.disabled = false;
-          btn.removeAttribute('disabled');
-        }
-      });
+    $$('.insc-tipo').forEach(c => {
+      c.classList.remove('is-selected');
+      const oldCheck = c.querySelector('.tipo-check');
+      if (oldCheck) oldCheck.remove();
     });
 
-    const btn = $('#insc-continue-1');
+    card.classList.add('is-selected');
+
+    const check = document.createElement('span');
+    check.className = 'tipo-check';
+    check.textContent = '✓';
+    card.appendChild(check);
+
+    const input = card.querySelector('input[type="radio"]');
+    if (input) {
+      input.checked = true;
+      input.disabled = false;
+    }
+
+    state.tipo = tipoKey;
 
     if (btn) {
-      btn.addEventListener('click', () => {
-        if (!state.tipo) {
-          alert('Selecione um tipo de inscrição para continuar.');
-          return;
-        }
-
-        const tipo = TIPOS[state.tipo];
-
-        const contexto = $('#insc-form-context');
-        if (contexto) contexto.textContent = tipo.label;
-
-        renderParticipantsFields();
-        goToStep(2);
-      });
+      btn.disabled = false;
+      btn.removeAttribute('disabled');
+      btn.classList.add('is-ready');
     }
+  }
+
+  $$('.insc-tipo').forEach(card => {
+    card.addEventListener('click', function () {
+      selectTipo(card);
+    });
+  });
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      if (!state.tipo) {
+        alert('Selecione um tipo de inscrição para continuar.');
+        return;
+      }
+
+      const tipo = TIPOS[state.tipo];
+
+      const contexto = $('#insc-form-context');
+      if (contexto) contexto.textContent = tipo.label;
+
+      renderParticipantsFields();
+      goToStep(2);
+    });
+  }
+}
   }
 
   function createField({ id, label, type = 'text', required = true, placeholder = '', key, inputmode = '', autocomplete = 'off', full = false, participantIndex = 1 }) {
