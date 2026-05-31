@@ -18,7 +18,6 @@
 </head>
 <body>
 
-<!-- ─── HEADER ENXUTO ─── -->
 <header class="insc-topbar">
   <a href="index.html" aria-label="House Conf 26 — voltar ao site" class="insc-topbar-logo">
     <img src="assets/logo/logo-houseconf-26.png" alt="House Conf 26">
@@ -34,7 +33,272 @@
 <main class="insc-page">
   <div class="insc-shell">
 
-    <!-- ─── STEP BAR ─── -->
+    <div class="insc-steps" role="navigation" aria-label="Etapas da inscrição">
+      <div class="insc-step active" data-step="1">
+        <span class="insc-step-num">1</span>
+        <span class="insc-step-label">Plano</span>
+      </div>
+      <span class="insc-step-divider" aria-hidden="true"></span>
+      <div class="insc-step" data-step="2">
+        <span class="insc-step-num">2</span>
+        <span class="insc-step-label">Dados</span>
+      </div>
+      <span class="insc-step-divider" aria-hidden="true"></span>
+      <div class="insc-step" data-step="3">
+        <span class="insc-step-num">3</span>
+        <span class="insc-step-label">Resumo</span>
+      </div>
+      <span class="insc-step-divider" aria-hidden="true"></span>
+      <div class="insc-step" data-step="4">
+        <span class="insc-step-num">4</span>
+        <span class="insc-step-label">Confirmação</span>
+      </div>
+    </div>
+
+    <section class="insc-stage active" data-stage="1">
+      <div class="insc-header">
+        <span class="insc-header-label">Inscrição · House Conf 26</span>
+        <h1 class="insc-header-title">Escolha seu <em>plano</em></h1>
+        <p class="insc-header-sub">11, 12 e 13 de Setembro · Quadrangular Casa de Amor</p>
+      </div>
+
+      <div class="insc-lotes">
+        <div class="insc-lote active">
+          <span class="insc-lote-tag">1º Lote · Ativo</span>
+          <div class="insc-lote-title">Ingresso Individual</div>
+          <div class="insc-lote-price"><small>R$</small>80<small style="font-size:1.1rem">,00</small></div>
+          <p class="insc-lote-desc">Valor promocional. Quantidade limitada.</p>
+        </div>
+        <div class="insc-lote">
+          <span class="insc-lote-tag">2º Lote · Em breve</span>
+          <div class="insc-lote-title">Ingresso Individual</div>
+          <div class="insc-lote-price"><small>R$</small>100<small style="font-size:1.1rem">,00</small></div>
+          <p class="insc-lote-desc">Em breve disponível.</p>
+          <span class="insc-lote-disabled">Não disponível para compra no momento</span>
+        </div>
+      </div>
+
+      <h2 class="insc-section-title">Tipo de inscrição</h2>
+      <div class="insc-tipos">
+        <label class="insc-tipo" data-tipo="individual_lote1">
+          <input type="radio" name="tipo" value="individual_lote1">
+          <span class="insc-tipo-label">Individual</span>
+          <div class="insc-tipo-name">1 ingresso</div>
+          <p class="insc-tipo-people">Para 1 participante</p>
+          <span class="insc-tipo-value"><small>R$</small>80,00</span>
+        </label>
+
+        <label class="insc-tipo" data-tipo="familia3_lote1">
+          <input type="radio" name="tipo" value="familia3_lote1">
+          <span class="insc-tipo-label">Combo Família</span>
+          <div class="insc-tipo-name">3 pessoas</div>
+          <p class="insc-tipo-people">Para 3 participantes</p>
+          <span class="insc-tipo-value"><small>R$</small>220,00</span>
+        </label>
+
+        <label class="insc-tipo" data-tipo="combo5_lote1">
+          <input type="radio" name="tipo" value="combo5_lote1">
+          <span class="insc-tipo-label">Combo Amigos</span>
+          <div class="insc-tipo-name">5 pessoas</div>
+          <p class="insc-tipo-people">Para 5 participantes</p>
+          <span class="insc-tipo-value"><small>R$</small>380,00</span>
+        </label>
+
+        <div class="insc-tipo insc-tipo-free is-disabled" data-tipo="crianca_ate10" aria-disabled="true">
+          <span class="insc-tipo-label">Criança</span>
+          <div class="insc-tipo-name">Até 10 anos</div>
+          <p class="insc-tipo-people">Entrada cortesia</p>
+          <span class="insc-tipo-value insc-tipo-value-free">Gratuito</span>
+        </div>
+      </div>
+
+      <div class="insc-benefits">
+        <div class="insc-benefit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          <span>Crianças até 10 anos não pagam</span>
+        </div>
+        <div class="insc-benefit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+          <span>Cartão em até 3x</span>
+        </div>
+        <div class="insc-benefit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+          <span>Pagamento seguro · Mercado Pago</span>
+        </div>
+        <div class="insc-benefit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Confirmação imediata</span>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem">
+        <button id="insc-continue-1" class="insc-btn-primary" disabled>
+          <span>Continuar</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="insc-stage" data-stage="2">
+      <div class="insc-header">
+        <span class="insc-header-label">Cadastro · <span id="insc-form-context">—</span></span>
+        <h1 class="insc-header-title">Seus <em>dados</em></h1>
+        <p class="insc-header-sub">Preencha as informações abaixo. Em seguida você verá o resumo e seguirá para pagamento.</p>
+      </div>
+
+      <form id="insc-form" class="insc-form" novalidate autocomplete="on">
+        <div class="insc-form-section">
+          <h3 class="insc-form-section-title">Dados do participante</h3>
+          <div class="insc-grid">
+            <div class="insc-field insc-field-full">
+              <label for="f-nome">Nome Completo</label>
+              <input type="text" id="f-nome" data-key="nome" autocomplete="name" required>
+              <span class="insc-field-error">Informe nome e sobrenome</span>
+            </div>
+            <div class="insc-field">
+              <label for="f-cpf">CPF</label>
+              <input type="text" id="f-cpf" data-key="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" required>
+              <span class="insc-field-error">CPF incompleto</span>
+            </div>
+            <div class="insc-field">
+              <label for="f-nascimento">Data de Nascimento</label>
+              <input type="text" id="f-nascimento" data-key="nascimento" inputmode="numeric" autocomplete="bday" placeholder="DD/MM/AAAA" maxlength="10" required>
+              <span class="insc-field-error">Informe a data</span>
+            </div>
+            <div class="insc-field">
+              <label for="f-whatsapp">WhatsApp</label>
+              <input type="tel" id="f-whatsapp" data-key="whatsapp" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" required>
+              <span class="insc-field-error">WhatsApp incompleto</span>
+            </div>
+            <div class="insc-field insc-field-full">
+              <label for="f-email">E-mail</label>
+              <input type="email" id="f-email" data-key="email" inputmode="email" autocomplete="email" required>
+              <span class="insc-field-error">E-mail inválido</span>
+            </div>
+          </div>
+          <div id="participantes-extra"></div>
+        </div>
+
+        <div class="insc-consent" role="group" aria-label="Consentimentos obrigatórios">
+          <label class="insc-check">
+            <input type="checkbox" id="f-aceito-termos" data-key="aceito_termos" required>
+            <span class="insc-check-box" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8.5l3.2 3.2L13 5"/>
+              </svg>
+            </span>
+            <span class="insc-check-text">
+              Li e aceito os <a href="termos.html" target="_blank" rel="noopener noreferrer">Termos de Uso</a>.
+            </span>
+          </label>
+          <label class="insc-check">
+            <input type="checkbox" id="f-aceito-privacidade" data-key="aceito_privacidade" required>
+            <span class="insc-check-box" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8.5l3.2 3.2L13 5"/>
+              </svg>
+            </span>
+            <span class="insc-check-text">
+              Li e concordo com a <a href="privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.
+            </span>
+          </label>
+          <p class="insc-consent-error" id="insc-consent-error" role="alert">É necessário aceitar os Termos de Uso e a Política de Privacidade para prosseguir.</p>
+        </div>
+
+        <div class="insc-form-nav">
+          <button type="button" id="insc-back-2" class="insc-back-step">
+            <span>Voltar</span>
+          </button>
+          <button type="submit" class="insc-btn-primary">
+            <span>Continuar para o resumo</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="insc-stage" data-stage="3">
+      <div class="insc-header">
+        <span class="insc-header-label">Resumo da inscrição</span>
+        <h1 class="insc-header-title">Confirme sua <em>inscrição</em></h1>
+        <p class="insc-header-sub">Revise as informações antes de prosseguir para o pagamento.</p>
+      </div>
+
+      <div class="insc-summary">
+        <div class="insc-summary-row">
+          <span class="insc-summary-label">Participante</span>
+          <span class="insc-summary-value" id="sum-nome">—</span>
+        </div>
+        <div class="insc-summary-row">
+          <span class="insc-summary-label">Tipo de inscrição</span>
+          <span class="insc-summary-value" id="sum-tipo">—</span>
+        </div>
+        <div class="insc-summary-row">
+          <span class="insc-summary-label">Cobre</span>
+          <span class="insc-summary-value" id="sum-people">—</span>
+        </div>
+        <div class="insc-summary-row">
+          <span class="insc-summary-label">WhatsApp</span>
+          <span class="insc-summary-value" id="sum-whatsapp">—</span>
+        </div>
+        <div class="insc-summary-row">
+          <span class="insc-summary-label">E-mail</span>
+          <span class="insc-summary-value" id="sum-email">—</span>
+        </div>
+        <div class="insc-summary-participants">
+          <span class="insc-summary-label">Participantes</span>
+          <div id="sum-participantes" class="sum-participants-list"></div>
+        </div>
+
+        <div class="insc-summary-total">
+          <span class="insc-summary-total-label">Valor total</span>
+          <span class="insc-summary-total-value" id="sum-total"><small>R$</small>0,00</span>
+        </div>
+        <p style="text-align:right;font-family:var(--font-editorial);font-style:italic;color:var(--amber);font-size:0.85rem;margin-top:0.4rem" id="sum-parcela-info">ou 3x no cartão</p>
+
+        <div class="payment-section" id="payment-section">
+          <h3 class="payment-title">Escolha a forma de pagamento</h3>
+          <p class="payment-subtitle">Pix e débito mantêm o valor normal. Crédito já inclui a taxa para a organização receber o valor líquido planejado.</p>
+          <div class="payment-options" id="payment-options"></div>
+        </div>
+
+        <div class="insc-summary-cta">
+          <button type="button" id="insc-pay" class="insc-btn-primary">
+            <span id="insc-pay-label">Ir para pagamento</span>
+          </button>
+          <p class="insc-summary-cta-note">Você será redirecionado para o ambiente seguro do Mercado Pago.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:1.5rem">
+        <button type="button" id="insc-back-3" class="insc-back-step">Editar dados</button>
+      </div>
+    </section>
+
+    <section class="insc-stage" data-stage="4">
+      <div class="insc-confirm">
+        <div class="insc-confirm-check" aria-hidden="true">✓</div>
+        <h1 class="insc-confirm-title" id="confirm-title-text">Inscrição <em>registrada</em></h1>
+        <p class="insc-confirm-msg" id="confirm-msg">
+          Sua inscrição na House Conf 26 foi registrada com sucesso.<br>
+          Após a aprovação do pagamento, a confirmação será enviada para o WhatsApp e e-mail cadastrados.
+        </p>
+        <div class="insc-confirm-code" id="confirm-code">—</div>
+        <div>
+          <a href="index.html" class="insc-btn-primary">
+            <span>Voltar ao início</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="js/inscricao.js"></script>
+</body>
+</html>    <!-- ─── STEP BAR ─── -->
     <div class="insc-steps" role="navigation" aria-label="Etapas da inscrição">
       <div class="insc-step active" data-step="1">
         <span class="insc-step-num">1</span>
