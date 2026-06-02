@@ -6,7 +6,7 @@
     individual_lote1: 80,
     individual_lote2: 100,
     familia3_lote1: 220,
-    combo5_lote1: 380,
+    combo5_lote1: 375,
     crianca_ate10: 0
   };
 
@@ -23,7 +23,7 @@
   const TIPOS = {
     individual_lote1: { key: 'individual_lote1', label: 'Individual — 1º Lote', people: 1, price: 80 },
     familia3_lote1: { key: 'familia3_lote1', label: 'Combo Família · 3 pessoas', people: 3, price: 220 },
-    combo5_lote1: { key: 'combo5_lote1', label: 'Combo 5 Amigos', people: 5, price: 380 },
+    combo5_lote1: { key: 'combo5_lote1', label: 'Combo 5 Amigos', people: 5, price: 375 },
     crianca_ate10: { key: 'crianca_ate10', label: 'Criança até 10 anos · Gratuito', people: 1, price: 0, disabled: true, infoOnly: true }
   };
 
