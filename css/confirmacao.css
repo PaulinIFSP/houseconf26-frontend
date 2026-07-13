@@ -65,10 +65,35 @@ h1 { margin: 0 0 18px; font-family: Fraunces, serif; font-size: clamp(40px, 7vw,
 .confirm-next p { margin: 0; color: var(--text); line-height: 1.65; }
 .confirm-actions { margin-top: 34px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 a { text-decoration: none; }
-.btn-primary, .btn-secondary, .btn-ghost { padding: 14px 22px; border-radius: 999px; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 800; }
+.btn-primary, .btn-secondary, .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 12px;
+  font-weight: 800;
+}
 .btn-primary { color: #1a0802; background: linear-gradient(135deg, #ffe0b8, #ff7a22); }
 .btn-secondary { color: var(--cream); border: 1px solid rgba(244,189,131,.4); background: rgba(255,255,255,.035); }
 .btn-ghost { color: var(--amber); }
+.btn-social .btn-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 18px;
+}
+.btn-social .btn-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
 footer { margin-top: 34px; color: rgba(244,189,131,.55); font-size: 13px; }
 @media (max-width: 560px) {
   .confirm-page { padding: 16px; }
