@@ -161,7 +161,7 @@ Foco apenas em três pontos. Tudo o resto (hero, timer, footer, redes sociais, c
    - O iframe do Google Maps agora ocupa todo o card (600px no desktop, 500px em tablet, 380px em mobile). Acabou a sensação de "mapa dentro de uma caixinha".
    - Filtro CSS (`invert + hue-rotate`) aplica um look noturno/cinematográfico ao mapa, alinhando à identidade visual.
    - Botão **"ABRIR NO GOOGLE MAPS"** sobreposto na base do card, glass premium (backdrop-filter + blur + saturate), centralizado, com ícone de pin laranja + seta de "abrir externo". Hover: vira laranja sólido sobre cream, com leve elevação.
-   - Endereço atualizado para `https://share.google/lyI0NgCxhQRfg05D5` nos três pontos: iframe (via query pelo nome), botão sobreposto, link inline "Ver no Google Maps" e botão grande do painel direito.
+   - Endereço atualizado para `https://share.google/VNZ3fBYM8SrRVos7e` nos três pontos: iframe (via query com endereço completo), botão sobreposto, link inline "Ver no Google Maps" e botão grande do painel direito.
 
 2. **Talita Cantazaro** — nome corrigido (era "Zancaro"). Foto substituída pela versão nova. Arquivo `talita-zancaro.jpg` removido, `talita-cantazaro.jpg` adicionado (900×1200, JPG q88). Cantar e contexto de palco preservados no enquadramento. Função: Adoração + Palavra (mantida).
 
